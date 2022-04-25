@@ -37,14 +37,11 @@ RUN sudo chown -R coder:coder /home/coder/.local
 # Port
 ENV PORT=8080
 
-RUN wget https://packages.microsoft.com/config/debian/11/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-RUN dpkg -i packages-microsoft-prod.deb
-RUN packages-microsoft-prod.deb
-
-RUN apt-get update; \
-   apt-get install -y apt-transport-https && \
-   apt-get update && \
-   apt-get install -y dotnet-sdk-6.0
+RUN sudo apt-get update
+COPY dotnet-install.sh .
+RUN sudo chmod +x dotnet-install.sh
+RUN sudo ./dotnet-install.sh -c 6.0
+RUN rm -f dotnet-install.sh
 
 # Use our custom entrypoint script first
 COPY deploy-container/entrypoint.sh /usr/bin/deploy-container-entrypoint.sh
