@@ -43,7 +43,8 @@ USER coder
 
 RUN sudo curl -sSL https://dot.net/v1/dotnet-install.sh | sudo bash /dev/stdin -Channel 6.0 -InstallDir /usr/share/dotnet \
     && sudo ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
-
+RUN git config --global user.email "tommy@terribledev.io"
+RUN git config --global user.name "Tommy Parnell"
 # Use our custom entrypoint script first
 COPY deploy-container/entrypoint.sh /usr/bin/deploy-container-entrypoint.sh
 ENTRYPOINT ["/usr/bin/deploy-container-entrypoint.sh"]
