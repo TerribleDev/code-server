@@ -37,11 +37,12 @@ RUN sudo chown -R coder:coder /home/coder/.local
 # Port
 ENV PORT=8080
 
-RUN sudo apt-get update
-COPY dotnet-install.sh .
-RUN sudo chmod +x dotnet-install.sh
-RUN sudo ./dotnet-install.sh -c 6.0
-RUN rm -f dotnet-install.sh
+## END
+
+USER coder
+
+RUN sudo curl -sSL https://dot.net/v1/dotnet-install.sh | sudo bash /dev/stdin -Channel 6.0 -InstallDir /usr/share/dotnet \
+    && sudo ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
 
 # Use our custom entrypoint script first
 COPY deploy-container/entrypoint.sh /usr/bin/deploy-container-entrypoint.sh
