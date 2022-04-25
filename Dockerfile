@@ -1,5 +1,5 @@
 # Start from the code-server Debian base image
-ARG NGROK=""
+ARG NGROK
 FROM codercom/code-server:latest
 
 USER coder
