@@ -1,4 +1,5 @@
 # Start from the code-server Debian base image
+ARG NGROK
 FROM codercom/code-server:latest
 
 USER coder
@@ -37,6 +38,7 @@ RUN sudo chown -R coder:coder /home/coder/.local
 # Port
 ENV PORT=8080
 
+
 ## END
 
 USER coder
@@ -46,6 +48,11 @@ RUN sudo curl -sSL https://dot.net/v1/dotnet-install.sh | sudo bash /dev/stdin -
 RUN git config --global user.email "tommy@terribledev.io"
 RUN git config --global user.name "Tommy Parnell"
 RUN sudo apt-get install libicu-dev -y && sudo apt-get install build-essential -y
+
+RUN curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null && \
+              echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list && \
+              sudo apt update && sudo apt install ngrok   
+RUN ngrok config add-authtoken $NGROK         
 # Use our custom entrypoint script first
 COPY deploy-container/entrypoint.sh /usr/bin/deploy-container-entrypoint.sh
 ENTRYPOINT ["/usr/bin/deploy-container-entrypoint.sh"]
