@@ -6,10 +6,10 @@ resource "digitalocean_droplet" "web" {
   ssh_keys = var.ssh_keys
 }
 
-resource "cloudflare_record" "foobar" {
+resource "cloudflare_record" "droplet" {
   zone_id = var.cloudflare_zone
   name    = "ide"
   value   = digitalocean_droplet.web.ipv4_address
-  type    = "CNAME"
-  ttl     = 3600
+  type    = "A"
+  ttl     = 300
 }
