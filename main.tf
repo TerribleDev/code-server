@@ -3,6 +3,7 @@ resource "digitalocean_droplet" "web" {
   name   = "web-1"
   region = "nyc1"
   size   = "s-1vcpu-1gb-amd"
+  ssh_keys = var.ssh_keys
 }
 
 resource "cloudflare_record" "foobar" {
@@ -11,5 +12,4 @@ resource "cloudflare_record" "foobar" {
   value   = digitalocean_droplet.web.ipv4_address
   type    = "CNAME"
   ttl     = 3600
-  ssh_keys = var.ssh_keys
 }
