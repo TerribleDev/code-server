@@ -1,28 +1,28 @@
 terraform {
   required_providers {
+    digitalocean = {
+      source = "digitalocean/digitalocean"
+      version = "~> 2.0"
+    }
     cloudflare = {
       source  = "cloudflare/cloudflare"
       version = "~> 3.0"
-    digitalocean = {
-        source = "digitalocean/digitalocean"
-        version = "~> 2.0"
-    }
     }
   }
 }
 
 variable "do_token" {
-    type = "string"
+    type = string
 }
 variable "cloudflare_email" {
-    type = "string"
+    type = string
 }
 variable "cloudflare_api_key" {
-    type = "string"
+    type = string
 }
 
 variable "cloudflare_zone" {
-    type = "string"
+    type = string
 }
 
 
