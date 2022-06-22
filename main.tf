@@ -4,3 +4,12 @@ resource "digitalocean_droplet" "web" {
   region = "nyc1"
   size   = "s-1vcpu-1gb-amd"
 }
+
+resource "cloudflare_record" "foobar" {
+  zone_id = var.cloudflare_zone
+  name    = "ide"
+  value   = digitalocean_droplet.web.ipv4_address
+  type    = "CNAME"
+  ttl     = 3600
+  ssh_keys = var.ssh_keys
+}
