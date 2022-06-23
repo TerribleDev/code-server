@@ -4,6 +4,7 @@ resource "digitalocean_droplet" "web" {
   region = "nyc1"
   size   = "s-1vcpu-1gb-amd"
   ssh_keys = var.ssh_keys
+  user_data = "${file("deploy-vm/launch-code-server.sh")}"
 }
 
 resource "cloudflare_record" "droplet" {
