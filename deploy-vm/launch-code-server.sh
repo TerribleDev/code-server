@@ -34,3 +34,11 @@ git config --global user.name "Tommy Parnell"
 sudo apt-get install libicu-dev -y && sudo apt-get install build-essential -y
 curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null && echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list
 sudo apt update && sudo apt install ngrok
+sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https
+curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo apt-key add -
+curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
+sudo apt update
+sudo apt install caddy
+sudo echo "ide.terrible.dev \
+reverse_proxy 127.0.0.1:8080" > /etc/caddy/Caddyfile
+sudo systemctl reload caddy
