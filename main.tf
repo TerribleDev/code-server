@@ -4,7 +4,7 @@ resource "digitalocean_droplet" "web" {
   region    = "nyc1"
   size      = "s-1vcpu-1gb-amd"
   ssh_keys  = var.ssh_keys
-  user_data = templatefile("deploy-vm/launch-code-server.sh", { dns_name = "${var.dns_name}.${cloudflare_zone.main_zone.name}" })
+  user_data = templatefile("deploy-vm/launch-code-server.sh", { dns_name = "${var.dns_name}.${data.cloudflare_zone.main_zone.name}" })
 }
 
 data "cloudflare_zone" "main_zone" {
