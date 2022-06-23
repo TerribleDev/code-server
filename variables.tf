@@ -1,17 +1,22 @@
 variable "do_token" {
-    type = string
+  type = string
 }
 variable "cloudflare_email" {
-    type = string
+  type = string
 }
 variable "cloudflare_api_token" {
-    type = string
+  type = string
 }
 
 variable "cloudflare_zone" {
-    type = string
+  type = string
 }
 
 variable "ssh_keys" {
-    type = list(string)
+  type = list(string)
+}
+
+variable "dns_name" {
+  type    = string
+  default = "ide"
 }

@@ -39,6 +39,6 @@ curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo apt-key
 curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
 sudo apt update
 sudo apt install caddy
-sudo echo "ide.terrible.dev \
+sudo echo "${dns_name} \
 reverse_proxy 127.0.0.1:8080" > /etc/caddy/Caddyfile
 sudo systemctl reload caddy
