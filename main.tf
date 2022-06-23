@@ -16,5 +16,4 @@ resource "cloudflare_record" "droplet" {
   name    = "ide"
   value   = digitalocean_droplet.web.ipv4_address
   type    = "A"
-  ttl     = 300
 }
