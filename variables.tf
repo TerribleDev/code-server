@@ -17,5 +17,5 @@ variable "ssh_keys" {
 
 variable "dns_name" {
   type    = string
-  default = "code"
+  default = "ide"
 }

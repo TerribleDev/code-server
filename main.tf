@@ -13,7 +13,7 @@ data "cloudflare_zone" "main_zone" {
 
 resource "cloudflare_record" "droplet" {
   zone_id = var.cloudflare_zone
-  name    = "ide"
+  name    = "code"
   value   = digitalocean_droplet.web.ipv4_address
   type    = "A"
 }
