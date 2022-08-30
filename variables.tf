@@ -7,6 +7,9 @@ variable "cloudflare_email" {
 variable "cloudflare_api_token" {
   type = string
 }
+variable "cloudflare_api_token" {
+  type = string
+}
 
 variable "cloudflare_zone" {
   type = string
