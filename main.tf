@@ -16,6 +16,4 @@ resource "cloudflare_record" "droplet" {
   name    = "ide"
   value   = digitalocean_droplet.web.ipv4_address
   type    = "A"
-  api_key = var.cloudflare_api_token
-  email  = var.cloudflare_email
 }
